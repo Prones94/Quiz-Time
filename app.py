@@ -1,41 +1,25 @@
 print("This is Football Trivia!")
-def startGame():
-    user_continue = input('Would you like to play? Press Y or N: ')
-    # print(user_continue)
-    user_continue = user_continue.capitalize()
-    if user_continue == 'Y':
-        print('Awesome, Let\'s go!')
-    elif user_continue =='N':
-        print('Boo, fine then.')
-    else:
-        print('Not a valid input.')
+questions = ['How many points is a touchdown?', 'How many teams are in the NFL?', 'True or False: Can the ball only be thrown forward once?\nEnter 1 for True and 0 for False',
+             'True or False: A first down is 5 yards from the line of play\nEnter 1 for True or 0 for False', 'How many people can be on the field from one team?\nEnter a number: ', 'Which year did football surpass baseball as America\'s favorite pasttime?\nEnter the year: ']
+all_answers = ['a. 10\nb. 7\nc. 15\nd. 3\ne. 5\n:',
+               'a. 20\nb. 24\nc. 32\nd. 18\ne. 30\n:', ':', ':', ':', ':']
+correct_answers = [{'b', '7'}, {'c', '32'}, {'0', 'true'},
+                  {'1', 'false'}, {'11', 'eleven'}, {'1965', '1965'}]
+answers = ['A touchdown is 7 points', 'There are 32 teams in NFL', 'You can only throw the ball forward once',
+                  'A first down is 10 yards or more gained in an play', 'Eleven people from each team can be on the field', 'Football surpassed baseball in 1965']
 
-def multiple_choice(score_for_mulitple):
-    '''This will ask two mulitple choice question and returns the score'''
+def quiz():
     score = 0
-    print('This is the mulitple choice portion! Please answer with only letters a-e.')
-    answer1 = input('How many points are scored in a touchdown?\n a. 7\n b. 10\n c. 3\n d. 5\n e. 9\n You\'re answer: ')
-    if answer1 == 'a':
-        print('That\'s correct! A touchdown is 7 points!')
-        score += 1
-        print(f'Score: {score}\n')
-    else:
-        print('Sorry, that\'s incorrect. Correct answer is a')
-        print(f'Score: {score}\n')
-    answer2 = input('How many teams are in the NFL?\n a. 20\n b. 30\n c. A Whole Bunch\n d. 32\n e. 16\n You\'re answer: ')
-    if answer2 == 'd':
-        print(f'That\'s correct. The answer is 32 teams!')
-        score += 1
-        print(f'Score: {score}\n')
-    else:
-        print('Sorry, wrong again. Correct answer is d')
-        print(f'Score: {score}\n')
+    for question, choices, correct_answer, answer in zip(questions,all_answers,correct_answers,answers):
+        print(question)
+        user_input = input(choices).lower()
+        if user_input in correct_answer:
+            print('Correct!')
+            score += 1
+        else:
+            print('Incorrect!', answer)
+    print(score,'out of', len(questions),'that is', float(score / len(questions)) * 100, '%')
 
+if __name__=='__main__':
+    quiz()
     
-def add_to_total(num):
-    '''This function adds a point to the total score'''
-    pass
-
-
-# startGame()
-multiple_choice(0)
